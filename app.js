@@ -1,12 +1,13 @@
 class Job {
-    constructor(company, jobTitle, applicationDate) {
+    constructor(company, jobTitle, applicationDate, additional) {
         this.company = company;
         this.jobTitle = jobTitle;
         this.applicationDate = applicationDate;
+        this.additional = additional;
     }
 };
 
-//UI
+//UIgit
 class UI {
     addJobToList(job) {
         const list = document.getElementById('application-list');
@@ -15,8 +16,8 @@ class UI {
     <td>${job.company}</td>
     <td>${job.jobTitle}</td>
     <td>${job.applicationDate}</td>
+    <td>${job.additional}</td>
     <td><a id="deleteJob" href="#" class="delete">X</a></td>
-    <td class="jobStatus"><a href="#" class="watch">?</a></td>
     `;
         list.appendChild(row);
     }
@@ -37,15 +38,12 @@ class UI {
             target.parentElement.parentElement.remove();
         }
     }
-    jobStatus(target) {
-        console.log('watching');
-        target.parentElement.parentElement.classList.add('watching');
-
-    }
+   
     clearFields() {
         document.getElementById('companyName').value = '';
         document.getElementById('jobTitle').value = '';
         document.getElementById('applicationDate').value = '';
+        document.getElementById('additionalInfo').value = '';
     }
 }; //end of UI class
 
@@ -65,10 +63,9 @@ class Store {
     // }
     static displayJobs() {
         const jobs = Store.getJobs();
-
+        
         jobs.forEach(function (job) {
             const ui = new UI;
-
             ui.addJobToList(job);
         })
     }
@@ -79,7 +76,6 @@ class Store {
     }
     static removeJob(applicationDate) {
         const jobs = Store.getJobs();
-
         jobs.forEach(function (job, index) {
             if (job.applicationDate === applicationDate) {
                 jobs.splice(index, 1);
@@ -98,13 +94,12 @@ document.getElementById('application-form').addEventListener('submit', function 
     const company = document.getElementById('companyName').value;
     const jobTitle = document.getElementById('jobTitle').value;
     const applicationDate = document.getElementById('applicationDate').value;
-    // const radios = document.querySelector('input[name=watch]:checked').value
-    // console.log(radios)
+    const additional = document.getElementById('additionalInfo').value;
 
-    const job = new Job(company, jobTitle, applicationDate);
+    const job = new Job(company, jobTitle, applicationDate, additional);
 
     const ui = new UI();
-    if (company === "" || jobTitle === "" || applicationDate === "") {
+    if (company === "" || jobTitle === "" || applicationDate === "" || additional === "") {
         ui.showAlert("Fill in all fields", 'error')
     } else {
         ui.addJobToList(job);
@@ -123,16 +118,16 @@ document.querySelector('#application-list').addEventListener('click', function (
     const ui = new UI();
     ui.deleteJob(e.target);
     //Remove from local Storage
-    Store.removeJob(e.target.parentElement.previousElementSibling.textContent);
+    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
     ui.showAlert('Job Removed', 'success');
     e.preventDefault();
 });
 
-//Event Listener Job Status
-document.querySelector('#application-list').addEventListener('dblclick', function (e) {
-    const ui = new UI();
+// //Event Listener Job Status
+// let jobStatus = document.querySelector('#application-list').addEventListener('dblclick', function (e) {
+//     const ui = new UI();
 
-    ui.jobStatus(e.target);
-    ui.showAlert('Watching Job', 'watching');
-    e.preventDefault();
-});
+//     ui.jobStatus(e.target);
+//     ui.showAlert('Watching Job', 'watching');
+//     e.preventDefault();
+// });

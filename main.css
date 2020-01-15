@@ -1,3 +1,13 @@
+body{
+    background-color: whitesmoke;
+}
+input {
+    border-radius: 2px;
+}
+img:hover{
+    transform: scale(1.1);
+    transition-duration: 0700ms;
+};
 .success, .error {
     color: #fff;
     padding: 5px;
@@ -18,4 +28,22 @@
 }
 .noWatch{
     background-color: crimson;
+}
+img{
+    width: 25px;
+    height: 25px;
+}
+label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+p{
+    font-size: 16px;
+    font-kerning: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    display: inline;
 }
