@@ -54,3 +54,7 @@ h1{
     padding-bottom: 1em;
     display: inline;
 }
+#filterInput{
+    border: none;
+    margin-left: 2.4em;
+}

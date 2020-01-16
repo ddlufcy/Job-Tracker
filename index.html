@@ -17,7 +17,7 @@
     <!-- Like what you see? view my portfolio at: www.danluf.com or email me at: ddlufcy@gmail.com -->
 
     <div class="container">
-        <div class="title"> 
+        <div class="title">
             <h1>Job Application Tracker</h1>
             <a id="logo1" href="https://github.com/ddlufcy/Job-Tracker"><img src="./assets/littleGit.png"
                     alt="GitHub Icon"></a>
@@ -45,24 +45,27 @@
             </div>
             <div class="row">
                 <label for="applicationMethod">Application Method </label>
-                <input type="text" id="applicationMethod" class="u five columns" placeholder="(Where and how you applied)">
+                <input type="text" id="applicationMethod" class="u five columns"
+                    placeholder="(Where and how you applied)">
             </div>
             <div class="row">
                 <label for="additionalInfo">Additional Info (Optional)</label>
-                <input type="text" id="additionalInfo" class="u five columns" placeholder="Call HR, check back on Friday etc..." >
+                <input type="text" id="additionalInfo" class="u five columns"
+                    placeholder="Call HR, check back on Friday etc...">
             </div>
 
             <div class="submitBtn">
                 <input id="submitBtn" type="submit" value="submit" class="u four columns">
             </div>
-
-            <!-- <div class="watchDiv">
-                        <label for="watchJob">Keep an eye on this</label>
-                        <input type="checkbox" id="watchJob" class="u five columns" placeholder="(Optional)" >
-                    </div> -->
         </form>
-        <!-- <hr> -->
-        <table class="u-full-width">
+
+        <br>
+
+        <table id="mainTable" class="u-full-width">
+            <div class="row">
+                <input class="u three columns" type="text" id="filterInput" onkeyup="filterFunction()"
+                    placeholder="Search jobs">
+            </div>
             <thead>
                 <tr>
                     <th>Company</th>
