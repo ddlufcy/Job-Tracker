@@ -1,9 +1,10 @@
 class Job {
-    constructor(company, jobTitle, applicationDate, additional) {
+    constructor(company, jobTitle, applicationDate, additional, appMethod) {
         this.company = company;
         this.jobTitle = jobTitle;
         this.applicationDate = applicationDate;
         this.additional = additional;
+        this.appMethod = appMethod;
     }
 };
 
@@ -16,6 +17,7 @@ class UI {
     <td>${job.company}</td>
     <td>${job.jobTitle}</td>
     <td>${job.applicationDate}</td>
+    <td>${job.appMethod}</td>
     <td>${job.additional}</td>
     <td><a id="deleteJob" href="#" class="delete">X</a></td>
     `;
@@ -44,6 +46,7 @@ class UI {
         document.getElementById('jobTitle').value = '';
         document.getElementById('applicationDate').value = '';
         document.getElementById('additionalInfo').value = '';
+        document.getElementById('applicationMethod').value = '';
     }
 }; //end of UI class
 
@@ -95,11 +98,12 @@ document.getElementById('application-form').addEventListener('submit', function 
     const jobTitle = document.getElementById('jobTitle').value;
     const applicationDate = document.getElementById('applicationDate').value;
     const additional = document.getElementById('additionalInfo').value;
+    const appMethod = document.getElementById('applicationMethod').value;
 
-    const job = new Job(company, jobTitle, applicationDate, additional);
+    const job = new Job(company, jobTitle, applicationDate, additional, appMethod);
 
     const ui = new UI();
-    if (company === "" || jobTitle === "" || applicationDate === "" || additional === "") {
+    if (company === "" || jobTitle === "" || applicationDate === "" || additional === "" || appMethod === "") {
         ui.showAlert("Fill in all fields", 'error')
     } else {
         ui.addJobToList(job);
@@ -118,7 +122,7 @@ document.querySelector('#application-list').addEventListener('click', function (
     const ui = new UI();
     ui.deleteJob(e.target);
     //Remove from local Storage
-    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
     ui.showAlert('Job Removed', 'success');
     e.preventDefault();
 });
