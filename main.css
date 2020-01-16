@@ -1,3 +1,6 @@
+/* font-family: 'Lato', sans-serif;
+font-family: 'Rubik', sans-serif; */
+
 body{
     background-color: whitesmoke;
 }
@@ -14,7 +17,7 @@ img:hover{
     margin: 5px 0 15px 0;
 }
 .success{
-    background-color: green;
+    background-color: #00ff002b;
 }
 .error {
     background-color: red;
@@ -22,6 +25,10 @@ img:hover{
 .submitBtn{
     margin: 1em;
     padding: 1.2em;
+}
+#submitBtn{
+    background-color: #00ff0052;
+  
 }
 .watching{
     background-color: aquamarine;
@@ -39,10 +46,10 @@ label{
 p{
     font-size: 16px;
     font-kerning: normal;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Rubik', sans-serif;
 }
 h1{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Lato', sans-serif;
     padding-right: 1em;
     padding-bottom: 1em;
     display: inline;
