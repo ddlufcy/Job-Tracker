@@ -1,60 +1,100 @@
 /* font-family: 'Lato', sans-serif;
 font-family: 'Rubik', sans-serif; */
 
-body{
-    background-color: whitesmoke;
+body {
+    background-color: rgb(225, 220, 215);
 }
+
 input {
     border-radius: 2px;
 }
-img:hover{
+
+img:hover {
     transform: scale(1.1);
     transition-duration: 0700ms;
-};
-.success, .error {
+}
+
+;
+
+.success,
+.error {
     color: #fff;
     padding: 5px;
     margin: 5px 0 15px 0;
 }
-.success{
+
+.success {
     background-color: #00ff002b;
 }
+
 .error {
     background-color: red;
 }
-.submitBtn{
+
+.submitBtn {
     margin: 1em;
     padding: 1.2em;
 }
-#submitBtn{
+
+#submitBtn {
     background-color: #00ff0052;
-  
+
 }
-.watching{
+
+.watching {
     background-color: aquamarine;
 }
-.noWatch{
+
+.noWatch {
     background-color: crimson;
 }
-img{
+
+img {
     width: 25px;
     height: 25px;
 }
-label{
+
+label {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-p{
+
+p {
     font-size: 16px;
     font-kerning: normal;
     font-family: 'Rubik', sans-serif;
 }
-h1{
+
+h1 {
     font-family: 'Lato', sans-serif;
     padding-right: 1em;
     padding-bottom: 1em;
     display: inline;
 }
-#filterInput{
+
+#filterInput {
     border: none;
     margin-left: 2.4em;
+}
+
+.rejectJob {
+    color: tomato;
+    text-decoration: line-through;
+}
+
+.jobData {
+    background-color: bisque;
+}
+
+i {
+    font-size: larger;
+    margin: 1em;
+}
+
+.fa fa-thumbs-up {
+    color: green;
+
+}
+
+.fa fa-thumbs-down {
+    color: red;
 }

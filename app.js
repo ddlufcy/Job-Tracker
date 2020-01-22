@@ -8,21 +8,28 @@ class Job {
     }
 };
 
+
+
 //UIgit
 class UI {
     addJobToList(job) {
         const list = document.getElementById('application-list');
         const row = document.createElement('tr');
+        row.classList.add("tableList");
+        // row.setAttribute("contentEditable", "true" );
         row.innerHTML = `
-    <td>${job.company}</td>
-    <td>${job.jobTitle}</td>
-    <td>${job.applicationDate}</td>
-    <td>${job.appMethod}</td>
-    <td>${job.additional}</td>
-    <td><a id="deleteJob" href="#" class="delete">X</a></td>
+        <td>${job.company}</td>
+        <td>${job.jobTitle}</td>
+        <td>${job.applicationDate}</td>
+        <td>${job.appMethod}</td>
+        <td id="additional" class="additional" contentEditable="true" onfocus="Store.storeEdit()">${job.additional}</td>
+        <td><a id="deleteJob" href="#" class="delete">X</a></td>
     `;
         list.appendChild(row);
-    }
+
+    };
+
+
     showAlert(message, className) {
         const div = document.createElement('div');
         div.className = `alert ${className}`;
@@ -40,7 +47,7 @@ class UI {
             target.parentElement.parentElement.remove();
         }
     }
-   
+
     clearFields() {
         document.getElementById('companyName').value = '';
         document.getElementById('jobTitle').value = '';
@@ -61,12 +68,9 @@ class Store {
         }
         return jobs;
     }
-    // static keepClass() {
-
-    // }
     static displayJobs() {
         const jobs = Store.getJobs();
-        
+
         jobs.forEach(function (job) {
             const ui = new UI;
             ui.addJobToList(job);
@@ -77,6 +81,10 @@ class Store {
         jobs.push(job);
         localStorage.setItem('jobs', JSON.stringify(jobs));
     }
+    static storeEdit(job) {
+        
+    }
+
     static removeJob(applicationDate) {
         const jobs = Store.getJobs();
         jobs.forEach(function (job, index) {
@@ -88,8 +96,11 @@ class Store {
 
     }
 };
+
+
 //DOM Load Event
-document.addEventListener('DOMContentLoaded', Store.displayJobs);
+document.addEventListener('DOMContentLoaded', Store.displayJobs, Store.storeEdit);
+
 
 //Event Listeners
 document.getElementById('application-form').addEventListener('submit', function (e) {
@@ -117,15 +128,21 @@ document.getElementById('application-form').addEventListener('submit', function 
     e.preventDefault();
 });
 
+
 //Event Listener For Delete
-document.querySelector('#application-list').addEventListener('click', function (e) {
+document.querySelector('#application-list').addEventListener('dblclick', function (e) {
     const ui = new UI();
     ui.deleteJob(e.target);
     //Remove from local Storage
-    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
     ui.showAlert('Job Removed', 'success');
     e.preventDefault();
 });
+
+
+
+
+
 //Filter function
 function filterFunction() {
     // Declare variables
@@ -134,35 +151,17 @@ function filterFunction() {
     filter = input.value.toUpperCase();
     table = document.getElementById("mainTable");
     tr = table.getElementsByTagName("tr");
-  
+
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
         }
-      }
     }
-  }
-
-
-
-
-
-
-
-
-
-
-// //Event Listener Job Status
-// let jobStatus = document.querySelector('#application-list').addEventListener('dblclick', function (e) {
-//     const ui = new UI();
-
-//     ui.jobStatus(e.target);
-//     ui.showAlert('Watching Job', 'watching');
-//     e.preventDefault();
-// });
+};
