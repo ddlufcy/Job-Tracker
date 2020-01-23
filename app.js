@@ -22,7 +22,7 @@ class UI {
         <td>${job.jobTitle}</td>
         <td>${job.applicationDate}</td>
         <td>${job.appMethod}</td>
-        <td id="additional" class="additional" contentEditable="true" onfocus="Store.storeEdit()">${job.additional}</td>
+        <td id="additional" class="additional" contentEditable="true" >${job.additional}</td>
         <td><a id="deleteJob" href="#" class="delete">X</a></td>
     `;
         list.appendChild(row);
@@ -81,9 +81,7 @@ class Store {
         jobs.push(job);
         localStorage.setItem('jobs', JSON.stringify(jobs));
     }
-    static storeEdit(job) {
-        
-    }
+ 
 
     static removeJob(applicationDate) {
         const jobs = Store.getJobs();
@@ -134,7 +132,7 @@ document.querySelector('#application-list').addEventListener('dblclick', functio
     const ui = new UI();
     ui.deleteJob(e.target);
     //Remove from local Storage
-    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
+    Store.removeJob(e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent);
     ui.showAlert('Job Removed', 'success');
     e.preventDefault();
 });
