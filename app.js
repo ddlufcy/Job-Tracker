@@ -128,7 +128,7 @@ document.getElementById('application-form').addEventListener('submit', function 
 
 
 //Event Listener For Delete
-document.querySelector('#application-list').addEventListener('dblclick', function (e) {
+document.querySelector('#application-list').addEventListener('click', function (e) {
     const ui = new UI();
     ui.deleteJob(e.target);
     //Remove from local Storage
